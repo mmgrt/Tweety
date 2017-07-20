@@ -4,7 +4,7 @@ Currently, *Account Activity API* is the only supported API, it provides **Direc
 Read more about it: https://dev.twitter.com/webhooks.
 
 # NuGet
-[![NuGet](https://img.shields.io/badge/nuget-Tweety-blue.svg)](https://preview.nuget.org/packages/Tweety/)
+[![NuGet](https://img.shields.io/badge/nuget-Tweety-blue.svg)](https://nuget.org/packages/Tweety/)
 
 
 # Before you start
