@@ -108,14 +108,14 @@ I've used Webhook Azure Function to test it, follow [Setup Azure Function](https
    
    
 # Todo
-- Provide better documentation.
-- Provide NuGet package.
-- Do the todos in the code :).
+- [ ] Provide better documentation.
+- [ ] Provide NuGet package.
+- [ ] Do the todos in the code :).
 
 
 # Find me
 
-[@mmgr](https://www.twitter.com/mmgrt)
+- Twitter: [@mmgr](https://www.twitter.com/mmgrt)
 
-[Devread.net](http://devread.net)
+- My blog: [Devread.net](http://devread.net)
 
