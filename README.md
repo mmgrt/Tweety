@@ -20,7 +20,7 @@ Then you **Subscribe** to a webhook by `Webhook Id`, then your server will recie
 Well, I'd say mainly for Bots, the **WebhooksManager** and the **SubscriptionsManager** will be used once, mostly to register and subscribe your bot twitter account to your server, so you can get any DM as an event and handle it.
 
 
-# Documentaion
+# Tweety APIs
 
   - **WebhooksManager**: Register a webhook, Get a list of registered webhooks and Unregister a webhook.
   
@@ -29,6 +29,8 @@ Well, I'd say mainly for Bots, the **WebhooksManager** and the **SubscriptionsMa
   - **WebhookInterceptor**: Handles the *Challenge Response Check (CRC)* [ref](https://dev.twitter.com/webhooks/securing#required-challenge-response-check)  requests from Twitter and invoking `Action<DirectMessageEvent>` if received a direct message webhook event after chcecking if the event is really from Twitter or not [ref](https://dev.twitter.com/webhooks/securing#validating-the-signature-header).. will return a `Tupel: (bool handled, HttpResponseMessage response)`, if handled, then return the response to the client, otherwise, you've to handle the request. 
   
   - **TweetyAuthContext**: Containes the needed information to perform authorizerd Twitter requests, i.e. Consumer Key/ Secret, Access Token/ Secret.
+  
+  - **DirectMessageSender**: Provides an easy way to send Direct Messages to a Twitter user by screen name.
   
 # Sample: Registerig a Webhook:
   ```csharp
