@@ -4,7 +4,8 @@ Currently, *Account Activity API* is the only supported API, it provides **Direc
 Read more about it: https://dev.twitter.com/webhooks.
 
 # NuGet
-Working on it...
+[![NuGet](https://img.shields.io/badge/nuget-Tweety-blue.svg)](https://preview.nuget.org/packages/Tweety/)
+
 
 # Before you start
 As of July, 20th 2017 - You have to request access to the webhook APIs from Twitter using this [Form](https://gnipinc.formstack.com/forms/account_activity_api_configuration_request_form), the process will take few day.
