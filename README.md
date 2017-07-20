@@ -72,7 +72,7 @@ Well, I'd say mainly for Bots, the **WebhooksManager** and the **SubscriptionsMa
 
 # Sample: Intercepting server request:
 
-I've used Webhook Azure Function to test it, follow (Setup Azure Function)[https://github.com/mmgrt/Tweety#setup-azure-function] below if you're interested.
+I've used Webhook Azure Function to test it, follow [Setup Azure Function](https://github.com/mmgrt/Tweety#setup-azure-function) below if you're interested.
 
  ```csharp
        WebhookInterceptor interceptor = new WebhookInterceptor(CONSUMER_KEY);
@@ -104,7 +104,7 @@ I've used Webhook Azure Function to test it, follow (Setup Azure Function)[https
       - Create a 'bin' folder in your function folder (same level as `run.csx`).
       - Upload Tweety.dll to the bin folder.
       - Insert `#r "Tweety.dll"` at the head of the `run.csx` file (before the `using` statements).
-   - In the `Run` method, intercept incoming requests, see the sample: (Intercepting server request)[https://github.com/mmgrt/Tweety#sample-intercepting-server-request].
+   - In the `Run` method, intercept incoming requests, see the sample: [Intercepting server request](https://github.com/mmgrt/Tweety#sample-intercepting-server-request).
    
    
 # Todo
@@ -115,6 +115,7 @@ I've used Webhook Azure Function to test it, follow (Setup Azure Function)[https
 
 # Find me
 
-(@mmgrt)[https://www.twitter.com/mmgrt)
-(Devread.net)[http://devread.net]
+[@mmgr](https://www.twitter.com/mmgrt)
+
+[Devread.net](http://devread.net)
 
