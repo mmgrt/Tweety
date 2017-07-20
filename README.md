@@ -99,7 +99,7 @@ I've used Webhook Azure Function to test it, follow [Setup Azure Function](https
 # Setup Azure Function
    - Go to [Azure Portal](https://portal.azure.com).
    - Create Azure Function App.
-   - Create Webhook Function.
+   - Create a `Generic Webhook` Function.
    - Import Tweety.dll:
       - Clone this repo.
       - Compile using Visual Studio 2017.
