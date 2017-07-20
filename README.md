@@ -34,25 +34,25 @@ Well, I'd say mainly for Bots, the **WebhooksManager** and the **SubscriptionsMa
   
 # Sample: Registerig a Webhook:
   ```csharp
-    TweetyAuthContext authContext = new Tweety.Authentication.TweetyAuthContext()
-    {
-         AccessSecret = ACCESS_TOKEN_SECRET,
-         AccessToken = ACCESS_TOKEN,
-         ConsumerKey = CONSUMER_KEY,
-         ConsumerSecret = CONSUMER_SECRET
-    };
-            
-    WebhooksManager webhooksManager = new WebhooksManager(authContext);
-    Result<WebhookRegistration> result = webhooksManager.RegisterWebhook("https://something.com/Twitbot");
+       TweetyAuthContext authContext = new Tweety.Authentication.TweetyAuthContext()
+       {
+            AccessSecret = ACCESS_TOKEN_SECRET,
+            AccessToken = ACCESS_TOKEN,
+            ConsumerKey = CONSUMER_KEY,
+            ConsumerSecret = CONSUMER_SECRET
+       };
+              
+       WebhooksManager webhooksManager = new WebhooksManager(authContext);
+       Result<WebhookRegistration> result = webhooksManager.RegisterWebhook("https://something.com/Twitbot");
     
-    if (result.Success)
-    {
-          Console.WriteLine($"Webhook Id {result.Data.Id}");
-    }
-    else
-    {
-          Console.WriteLine($"Failed to register webhook, Error: {result.Error.ToString()}");
-    }
+       if (result.Success)
+       {
+             Console.WriteLine($"Webhook Id {result.Data.Id}");
+       }
+       else
+       {
+             Console.WriteLine($"Failed to register webhook, Error: {result.Error.ToString()}");
+       }
 
   ```
 # Sample: Subscribing to a Webhook:
