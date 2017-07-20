@@ -3,6 +3,8 @@ Tweety is a server-side, .NET Standard Library to help managing Twitter Webhook 
 Currently, *Account Activity API* is the only supported API, it provides **Direct Messages** webhook API.
 Read more about it: https://dev.twitter.com/webhooks.
 
+# NuGet
+Working on it...
 
 # Before you start
 As of July, 20th 2017 - You have to request access to the webhook APIs from Twitter using this [Form](https://gnipinc.formstack.com/forms/account_activity_api_configuration_request_form), the process will take few day.
@@ -12,6 +14,11 @@ Anyways, check this page before you start: https://dev.twitter.com/webhooks/acco
 # How it works
 You **Register a webhook** by url, that's your server, to **Handle incoming messages**.
 Then you **Subscribe** to a webhook by `Webhook Id`, then your server will recieve **Events** for any incoming OR outgoing direct message for/ from the signed in/ subscribed user (in most cases, the user is a bot). 
+
+
+# What for?
+Well, I'd say mainly for Bots, the **WebhooksManager** and the **SubscriptionsManager** will be used once, mostly to register and subscribe your bot twitter account to your server, so you can get any DM as an event and handle it.
+
 
 # Documentaion
 
@@ -23,27 +30,53 @@ Then you **Subscribe** to a webhook by `Webhook Id`, then your server will recie
   
   - **TweetyAuthContext**: Containes the needed information to perform authorizerd Twitter requests, i.e. Consumer Key/ Secret, Access Token/ Secret.
   
-  # Sample: Registerig a Webhook:
+# Sample: Registerig a Webhook:
   ```csharp
-  TweetyAuthContext authContext = new Tweety.Authentication.TweetyAuthContext()
-  {
-       AccessSecret = ACCESS_TOKEN_SECRET,
-       AccessToken = ACCESS_TOKEN,
-       ConsumerKey = CONSUMER_KEY,
-       ConsumerSecret = CONSUMER_SECRET
-  };
+    TweetyAuthContext authContext = new Tweety.Authentication.TweetyAuthContext()
+    {
+         AccessSecret = ACCESS_TOKEN_SECRET,
+         AccessToken = ACCESS_TOKEN,
+         ConsumerKey = CONSUMER_KEY,
+         ConsumerSecret = CONSUMER_SECRET
+    };
             
     WebhooksManager webhooksManager = new WebhooksManager(authContext);
     Result<WebhookRegistration> result = webhooksManager.RegisterWebhook("https://something.com/Twitbot");
     
     if (result.Success)
     {
-          Console.WriteLine($Webhook Id {result.Data.Id});
+          Console.WriteLine($"Webhook Id {result.Data.Id}");
     }
     else
     {
-          Console.WriteLine(result.Error.ToString());
+          Console.WriteLine($"Failed to register webhook, Error: {result.Error.ToString()}");
     }
 
-
   ```
+# Sample: Subscribing to a Webhook:
+
+```csharp
+
+     SubscriptionsManager subManager = new SubscriptionsManager(authContext);
+     Result<bool> result = await subManager.Subscribe(webhookId);
+     
+     if(result.Success && result.Data)
+     {
+          Console.WriteLine($"Successfully subscribed to {webhookId}");
+     }
+     else
+     {
+          Console.WriteLine($"Failed to subscribe to a webhook, Error: {result.Error?.ToString() ?? "Error isn't available"}");
+     }
+```
+
+# Sample: Intercepting server request:
+
+I've used Webhook Azure Function to test it, follow **Setup Azure Function** below if you're interested.
+
+```csharp
+  Working on it...
+```
+
+# Setup Azure Function
+Working on it...
