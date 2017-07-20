@@ -55,28 +55,59 @@ Well, I'd say mainly for Bots, the **WebhooksManager** and the **SubscriptionsMa
   ```
 # Sample: Subscribing to a Webhook:
 
-```csharp
+  ```csharp
 
-     SubscriptionsManager subManager = new SubscriptionsManager(authContext);
-     Result<bool> result = await subManager.Subscribe(webhookId);
+       SubscriptionsManager subManager = new SubscriptionsManager(authContext);
+       Result<bool> result = await subManager.Subscribe(webhookId);
      
-     if(result.Success && result.Data)
-     {
-          Console.WriteLine($"Successfully subscribed to {webhookId}");
-     }
-     else
-     {
-          Console.WriteLine($"Failed to subscribe to a webhook, Error: {result.Error?.ToString() ?? "Error isn't available"}");
-     }
-```
+       if(result.Success && result.Data)
+       {
+            Console.WriteLine($"Successfully subscribed to {webhookId}");
+       }
+       else
+       {
+            Console.WriteLine($"Failed to subscribe to a webhook, Error: {result.Error?.ToString() ?? "Error isn't available"}");
+       }
+  ```
 
 # Sample: Intercepting server request:
 
-I've used Webhook Azure Function to test it, follow **Setup Azure Function** below if you're interested.
+I've used Webhook Azure Function to test it, follow (Setup Azure Function)[https://github.com/mmgrt/Tweety#setup-azure-function] below if you're interested.
 
-```csharp
-  Working on it...
-```
+ ```csharp
+       WebhookInterceptor interceptor = new WebhookInterceptor(CONSUMER_KEY);
+       (bool handled, HttpResponseMessage response) result = await interceptor.InterceptIncomingRequest(requestMessage, onMessage);
+           
+       if (result.handled)
+       {
+            return result.response;
+       }
+       else
+       {
+            //handle req
+       }
+       //..
+       
+       private void onMessage(DirectMessageEvent message)
+       {
+            Console.WriteLine($"Recieved {message.MessageText} from {message.Sender.Name}.");
+       }
+ ```
 
 # Setup Azure Function
-Working on it...
+   - Go to [Azure Portal](https://portal.azure.com).
+   - Create Azure Function App.
+   - Create Webhook Function.
+   - Import Tweety.dll:
+      - Clone this repo.
+      - Compile using Visual Studio 2017.
+      - Create a 'bin' folder in your function folder (same level as `run.csx`).
+      - Upload Tweety.dll to the bin folder.
+      - Insert `#r "Tweety.dll"` at the head of the `run.csx` file (before the `using` statements).
+   - In the `Run` method, intercept incoming requests, see the sample: (Intercepting server request)[https://github.com/mmgrt/Tweety#sample-intercepting-server-request].
+   
+   
+# Todo
+- Provide better documentation.
+- Provide NuGet package.
+- Do the todos in the code :).
