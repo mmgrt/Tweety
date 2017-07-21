@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 
 namespace Tweety.Extensions
 {
-    public static class DictionaryExt
+    internal static class DictionaryExt
     {
         public static Dictionary<string, string> GetParams(this Uri uri)
         {

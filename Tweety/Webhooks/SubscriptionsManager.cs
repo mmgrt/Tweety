@@ -35,7 +35,7 @@ namespace Tweety.Webhooks
 
             if (string.IsNullOrEmpty(webhookId))
             {
-                throw new ArgumentNullException(nameof(webhookId));
+                throw new ArgumentException(nameof(webhookId));
             }
 
             //TODO: Provide a generic class to make Twitter API Requests.
@@ -82,7 +82,7 @@ namespace Tweety.Webhooks
 
             if (string.IsNullOrEmpty(webhookId))
             {
-                throw new ArgumentNullException(nameof(webhookId));
+                throw new ArgumentException(nameof(webhookId));
             }
 
             //TODO: Provide a generic class to make Twitter API Requests.
@@ -130,7 +130,7 @@ namespace Tweety.Webhooks
 
             if (string.IsNullOrEmpty(webhookId))
             {
-                throw new ArgumentNullException(nameof(webhookId));
+                throw new ArgumentException(nameof(webhookId));
             }
 
             //TODO: Provide a generic class to make Twitter API Requests.

@@ -27,12 +27,12 @@ namespace Tweety.Authentication
 
             if (!Uri.TryCreate(requestUrl, UriKind.RelativeOrAbsolute, out Uri resourceUri))
             {
-                throw new Exception("Invalid Resource Url format.");
+                throw new TweetyException("Invalid Resource Url format.");
             }
 
             if (authContext == null || !authContext.IsValid)
             {
-                throw new Exception("Invalid Tweety Auth Context.");
+                throw new TweetyException("Invalid Tweety Auth Context.");
             }
 
             string oauthVersion = "1.0";

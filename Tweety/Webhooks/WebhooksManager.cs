@@ -75,7 +75,7 @@ namespace Tweety.Webhooks
         {
             if (string.IsNullOrEmpty(url))
             {
-                throw new ArgumentNullException(nameof(url));
+                throw new ArgumentException(nameof(url));
             }
 
             //TODO: Provide a generic class to make Twitter API Requests.

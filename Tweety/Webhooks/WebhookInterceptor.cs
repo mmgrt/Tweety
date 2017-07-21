@@ -47,7 +47,7 @@ namespace Tweety.Webhooks
         {
             if (string.IsNullOrEmpty(ConsumerSecret))
             {
-                throw new Exception("Consumer Secret can't be null.");
+                throw new TweetyException("Consumer Secret can't be null.");
             }
 
             if (requestMessage.Method == HttpMethod.Get)

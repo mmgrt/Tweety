@@ -11,6 +11,10 @@ using Tweety.Models.Twitter;
 
 namespace Tweety
 {
+
+    /// <summary>
+    /// Helper class to send Direct Message to twitter user using the screen name.
+    /// </summary>
     public class DirectMessageSender
     {
 

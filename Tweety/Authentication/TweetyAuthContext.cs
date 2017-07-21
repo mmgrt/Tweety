@@ -13,7 +13,8 @@
 
 
         /// <summary>
-        /// Read-only property to check if this auth data is valid or not.
+        /// Check if the current auth context is valid or not.
+        /// Null or Empty value for one on the auth properties will return false.
         /// </summary>
         public bool IsValid => !string.IsNullOrEmpty(ConsumerKey) && !string.IsNullOrEmpty(ConsumerSecret) && !string.IsNullOrEmpty(AccessToken) && !string.IsNullOrEmpty(AccessSecret);
     }
