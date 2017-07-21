@@ -1,4 +1,0 @@
-c:\users\muhamedg\documents\visual studio 2017\Projects\Tweety\Tweety\bin\Debug\netstandard1.4\Tweety.deps.json
-c:\users\muhamedg\documents\visual studio 2017\Projects\Tweety\Tweety\bin\Debug\netstandard1.4\Tweety.dll
-c:\users\muhamedg\documents\visual studio 2017\Projects\Tweety\Tweety\obj\Debug\netstandard1.4\Tweety.csprojResolveAssemblyReference.cache
-c:\users\muhamedg\documents\visual studio 2017\Projects\Tweety\Tweety\obj\Debug\netstandard1.4\Tweety.AssemblyInfo.cs
