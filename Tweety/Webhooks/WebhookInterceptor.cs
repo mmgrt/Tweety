@@ -26,6 +26,12 @@ namespace Tweety.Webhooks
         /// </summary>
         public string ConsumerSecret { get; set; }
 
+
+        /// <summary>
+        /// Create a new instance of <see cref="WebhookInterceptor"/> with your Twitter App Consumer Key.
+        /// 
+        /// </summary>
+        /// <param name="consumerSecret">Twitter App Consumer Key, used for hashing.</param>
         public WebhookInterceptor(string consumerSecret)
         {
             ConsumerSecret = consumerSecret;
@@ -33,17 +39,16 @@ namespace Tweety.Webhooks
 
 
         /// <summary>
-        /// Intercept incoming requests to the server to handle them, Currently:
+        /// Intercept incoming requests to the server to handle them according to Twitter Documentation, Currently:
         ///     - Challenge Response Check.
         ///     - Incoming DirectMessage.
         /// </summary>
         /// <param name="requestMessage">Thr request message object you recieved.</param>
         /// <param name="OnDirectMessageRecieved">If this is an incoming direct message, this callback will be fired along with the message object <see cref="DirectMessageEvent"/>.</param>
         /// <returns>
-        /// <see cref="bool"/> true if handled/ false if not.
-        /// <see cref="HttpResponseMessage"/> If handled, it's good to return this as the server response, if not handled, this message will be 'OK 200' empty response message.
+        /// <see cref="InterceptionResult"/> Interception result.
         /// </returns>
-        public async Task<(bool handled, HttpResponseMessage response)> InterceptIncomingRequest(HttpRequestMessage requestMessage, Action<DirectMessageEvent> OnDirectMessageRecieved)
+        public async Task<InterceptionResult> InterceptIncomingRequest(HttpRequestMessage requestMessage, Action<DirectMessageEvent> OnDirectMessageRecieved)
         {
             if (string.IsNullOrEmpty(ConsumerSecret))
             {
@@ -63,7 +68,7 @@ namespace Tweety.Webhooks
                 string crcToken = requestParams["crc_token"];
                 HttpResponseMessage response = AcceptChallenge(crcToken);
 
-                return (true, response);
+                return InterceptionResult.CreateHandled(response, requestMessage);
             }
             else if (requestMessage.Method == HttpMethod.Post)
             {
@@ -81,7 +86,8 @@ namespace Tweety.Webhooks
                 if (!signatureMatch)
                 {
                     //This is interseting, a twitter signature key 'x-twitter-webhooks-signature' is there but it's wrong..!
-                    return (true, new HttpResponseMessage(System.Net.HttpStatusCode.BadRequest));
+                    return InterceptionResult.CreateHandled(new HttpResponseMessage(System.Net.HttpStatusCode.BadRequest), requestMessage);
+
                 }
 
                 try
@@ -100,7 +106,7 @@ namespace Tweety.Webhooks
             }
 
             Finally:
-            return (false, OK());
+            return InterceptionResult.CreateUnhandled(OK(), requestMessage);
         }
 
 

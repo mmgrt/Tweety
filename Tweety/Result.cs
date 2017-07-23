@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Tweety.Models.Twitter;
 
-namespace Tweety.Models
+namespace Tweety
 {
 
     /// <summary>
