@@ -27,13 +27,13 @@ Well, I'd say mainly for Bots, the **WebhooksManager** and the **SubscriptionsMa
   
   - **SubscriptionsManager**: Subscribe to a webhook, Unsubscribe, or Check if the user is already subscribed or not.
   
-  - **WebhookInterceptor**: Handles the *Challenge Response Check (CRC)* [ref](https://dev.twitter.com/webhooks/securing#required-challenge-response-check)  requests from Twitter and invoking `Action<DirectMessageEvent>` if received a direct message webhook event after chcecking if the event is really from Twitter or not [ref](https://dev.twitter.com/webhooks/securing#validating-the-signature-header).. will return a `Tupel: (bool handled, HttpResponseMessage response)`, if handled, then return the response to the client, otherwise, you've to handle the request. 
+  - **WebhookInterceptor**: Handles the *Challenge Response Check (CRC)* [ref](https://dev.twitter.com/webhooks/securing#required-challenge-response-check)  requests from Twitter and invoking `Action<DirectMessageEvent>` if received a direct message webhook event after chcecking if the event is really from Twitter or not [ref](https://dev.twitter.com/webhooks/securing#validating-the-signature-header).. will return a `InterceptionResult`, if IsHandled is true, then return the response to the client, otherwise, you've to handle the request. 
   
   - **TweetyAuthContext**: Containes the needed information to perform authorizerd Twitter requests, i.e. Consumer Key/ Secret, Access Token/ Secret.
   
   - **DirectMessageSender**: Provides an easy way to send Direct Messages to a Twitter user by screen name.
   
-# Sample: Registerig a Webhook:
+# Example: Registerig a Webhook:
   ```csharp
        TweetyAuthContext authContext = new Tweety.Authentication.TweetyAuthContext()
        {
@@ -56,7 +56,7 @@ Well, I'd say mainly for Bots, the **WebhooksManager** and the **SubscriptionsMa
        }
 
   ```
-# Sample: Subscribing to a Webhook:
+# Example: Subscribing to a Webhook:
 
   ```csharp
 
@@ -73,17 +73,17 @@ Well, I'd say mainly for Bots, the **WebhooksManager** and the **SubscriptionsMa
        }
   ```
 
-# Sample: Intercepting server request:
+# Example: Intercepting server request:
 
 I've used Webhook Azure Function to test it, follow [Setup Azure Function](https://github.com/mmgrt/Tweety#setup-azure-function) below if you're interested.
 
  ```csharp
        WebhookInterceptor interceptor = new WebhookInterceptor(CONSUMER_KEY);
-       (bool handled, HttpResponseMessage response) result = await interceptor.InterceptIncomingRequest(requestMessage, onMessage);
+       WebhookInterceptor result = await interceptor.InterceptIncomingRequest(requestMessage, onMessage);
            
-       if (result.handled)
+       if (result.IsHandled)
        {
-            return result.response;
+            return result.Response;
        }
        else
        {
@@ -117,7 +117,7 @@ I've used Webhook Azure Function to test it, follow [Setup Azure Function](https
 
 # Find me
 
-- Twitter: [@mmgr](https://www.twitter.com/mmgrt)
+- Twitter: [@mmgrt](https://www.twitter.com/mmgrt)
 
 - My blog: [Devread.net](http://devread.net)
 
