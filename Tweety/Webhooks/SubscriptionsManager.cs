@@ -29,7 +29,7 @@ namespace Tweety.Webhooks
         /// Subscribe current user (from the auth context) to a webhook by Id.
         /// </summary>
         /// <param name="webhookId">Webhook Id to subscribe to.</param>
-        /// <returns></returns>
+        /// <returns>true indicates successfull subscribtion.</returns>
         public async Task<Result<bool>> Subscribe(string webhookId)
         {
 
@@ -76,7 +76,7 @@ namespace Tweety.Webhooks
         /// Checks if the current user (from the auth context) is subscribed to a webhook by Id.
         /// </summary>
         /// <param name="webhookId">Webhook Id to check against.</param>
-        /// <returns></returns>
+        /// <returns>true indicates existed subscribtion.</returns>
         public async Task<Result<bool>> CheckSubscription(string webhookId)
         {
 
@@ -107,6 +107,13 @@ namespace Tweety.Webhooks
             if (!string.IsNullOrEmpty(jsonResponse))
             {
                 TwitterError err = JsonConvert.DeserializeObject<TwitterError>(jsonResponse);
+                if(err.Errors.Count == 1 && err.Errors[0].Code == 34)
+                {
+                    // Twitter API will return : {"code":34,"message":"Sorry, that page does not exist."} if you try to check a webhook with 0 subscribers,
+                    // Which means, you're not subscribed.
+                    return new Result<bool>(false);
+                }
+
                 return new Result<bool>(err);
             }
             else
@@ -124,7 +131,7 @@ namespace Tweety.Webhooks
         /// Unsubscribe current user (from the auth context) from a webhook by Id.
         /// </summary>
         /// <param name="webhookId">Webhook Id to unsubscribe from.</param>
-        /// <returns></returns>
+        /// <returns>true indicates successful deletion.</returns>
         public async Task<Result<bool>> Unsubscribe(string webhookId)
         {
 
@@ -155,6 +162,13 @@ namespace Tweety.Webhooks
             if (!string.IsNullOrEmpty(jsonResponse))
             {
                 TwitterError err = JsonConvert.DeserializeObject<TwitterError>(jsonResponse);
+                if (err.Errors.Count == 1 && err.Errors[0].Code == 34)
+                {
+                    // Twitter API will return : {"code":34,"message":"Sorry, that page does not exist."} if you try to check a webhook with 0 subscribers,
+                    // Which means, you're not subscribed.
+                    return new Result<bool>(true);
+                }
+
                 return new Result<bool>(err);
             }
             else

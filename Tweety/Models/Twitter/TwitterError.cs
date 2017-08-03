@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Tweety.Models.Twitter
@@ -13,7 +14,7 @@ namespace Tweety.Models.Twitter
 
         public override string ToString()
         {
-            return string.Join("\n", Errors);
+            return string.Join("\n", Errors.Select(err => $"Error Code: {err.Code}, Error Message: {err.Message}"));
         }
     }
 
