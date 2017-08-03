@@ -79,7 +79,7 @@ I've used Webhook Azure Function to test it, follow [Setup Azure Function](https
 
  ```csharp
        WebhookInterceptor interceptor = new WebhookInterceptor(CONSUMER_KEY);
-       WebhookInterceptor result = await interceptor.InterceptIncomingRequest(requestMessage, onMessage);
+       InterceptionResult result = await interceptor.InterceptIncomingRequest(requestMessage, onMessage);
            
        if (result.IsHandled)
        {
