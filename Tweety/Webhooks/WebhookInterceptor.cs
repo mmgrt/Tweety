@@ -94,6 +94,7 @@ namespace Tweety.Webhooks
                 {
                     WebhookDMResult dmResult = JsonConvert.DeserializeObject<WebhookDMResult>(payload);
                     DirectMessageEvent eventResult = dmResult;
+                    eventResult.JsonSource = payload;
 
                     OnDirectMessageRecieved?.Invoke(eventResult);
                 }

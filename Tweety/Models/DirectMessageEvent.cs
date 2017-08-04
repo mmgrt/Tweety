@@ -14,6 +14,7 @@ namespace Tweety.Models
         public string MessageText { get; internal set; }
         public TwitterEntities MessageEntities { get; internal set; }
 
+        public string JsonSource { get; internal set; }
     }
 }
 
