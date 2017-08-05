@@ -117,7 +117,7 @@ I've used Webhook Azure Function to test it, follow [Setup Azure Function](https
 
 # Find me
 
-- Twitter: [@mmgrt](https://www.twitter.com/mmgrt)
+- Twitter: [@mmg_rt](https://www.twitter.com/mmg_rt)
 
 - My blog: [Devread.net](http://devread.net)
 
