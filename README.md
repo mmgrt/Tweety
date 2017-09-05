@@ -78,7 +78,7 @@ Well, I'd say mainly for Bots, the **WebhooksManager** and the **SubscriptionsMa
 I've used Webhook Azure Function to test it, follow [Setup Azure Function](https://github.com/mmgrt/Tweety#setup-azure-function) below if you're interested.
 
  ```csharp
-       WebhookInterceptor interceptor = new WebhookInterceptor(CONSUMER_KEY);
+       WebhookInterceptor interceptor = new WebhookInterceptor(CONSUMER_SECRET);
        InterceptionResult result = await interceptor.InterceptIncomingRequest(requestMessage, onMessage);
            
        if (result.IsHandled)
